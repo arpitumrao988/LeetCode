@@ -1,3 +1,4 @@
+//c++
 int maximumPopulation(int** logs, int logsSize, int* logsColSize) {
     int arr[101]={0};
     for(int i=0;i<logsSize;i++)
@@ -22,10 +23,7 @@ int maximumPopulation(int** logs, int logsSize, int* logsColSize) {
         else if( current_population==max_population)
         {
             (max_year<year)?max_year:year;
-        }
-
-
-        
+        }   
     }return max_year;
 
 }
