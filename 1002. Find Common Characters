@@ -1,0 +1,43 @@
+//c
+
+char** commonChars(char** words, int wordsSize, int* returnSize) {
+    int global_freq[26];
+    
+    
+    for (int i = 0; i < 26; i++) {
+        global_freq[i] = INT_MAX;
+    }
+
+    
+    for (int i = 0; i < wordsSize; i++) {
+        int local_freq[26] = {0};
+        
+       
+        for (int j = 0; words[i][j] != '\0'; j++) {
+            local_freq[words[i][j] - 'a']++;
+        }
+
+       
+        for (int k = 0; k < 26; k++) {
+            if (local_freq[k] < global_freq[k]) {
+                global_freq[k] = local_freq[k];
+            }
+        }
+    }
+
+    
+    char** result = (char**)malloc(100 * sizeof(char*)); // safe upper bound
+    *returnSize = 0;
+
+    for (int i = 0; i < 26; i++) {
+        while (global_freq[i] > 0) {
+            result[*returnSize] = (char*)malloc(2 * sizeof(char));
+            result[*returnSize][0] = 'a' + i;
+            result[*returnSize][1] = '\0';
+            (*returnSize)++;
+            global_freq[i]--;
+        }
+    }
+
+    return result;
+}
