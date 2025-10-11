@@ -1,0 +1,17 @@
+class Solution {
+public:
+    int subarraysDivByK(vector<int>& nums, int k) {
+      vector<int> reminder_counts(k, 0);
+      reminder_counts[0] = 1;
+      int current_sum=0;
+      int count =0;
+      for(int num : nums)
+      {
+        current_sum+=num;
+        int reminder=(current_sum%k+k)%k;
+        count+=reminder_counts[reminder];
+        reminder_counts[reminder]++;
+      }  
+      return count;
+    }
+};
